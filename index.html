@@ -3,126 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이바우펫 애견미용학원 - 단기속성 실견중심</title>
+    <title>Evaw Pet 애견미용학원 | 전국 20개 직영 · 이바우펫</title>
+    <meta name="description" content="애견미용학원·자격증·취업·창업까지 한 번에, 실견 중심 교육">
+    <meta name="keywords" content="애견미용학원, 부산 애견미용학원, 애견미용 자격증, 애견미용 국비지원, 애견미용 취업, 애견미용 창업">
+    
+    <!-- 구글 폰트 적용 (Noto Sans KR) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+
     <style>
-        /* 기본 스타일 리셋 */
+        /* [공통 스타일 리셋] */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Malgun Gothic', sans-serif; line-height: 1.6; color: #333; background-color: #fff; }
+        body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; color: #333; background-color: #fff; padding-bottom: 90px; }
         img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
         
-        /* 공통 섹션 스타일 */
-        section { padding: 50px 20px; text-align: center; max-width: 600px; margin: 0 auto; }
-        .section-title { font-size: 24px; font-weight: bold; margin-bottom: 25px; color: #111; }
+        section { padding: 60px 20px; text-align: center; max-width: 600px; margin: 0 auto; overflow: hidden; }
+        .section-title { font-size: 26px; font-weight: 700; margin-bottom: 25px; color: #111; position: relative; display: inline-block; }
+        .gray-bg { background-color: #f5f5f5; max-width: 100%; }
+        .gray-bg .inner { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+
+        /* 1. 히어로 슬라이드쇼 섹션 */
+        .hero-slider-container { position: relative; width: 100%; height: 320px; background: #111; overflow: hidden; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; font-weight: bold; }
+        .slide.active { opacity: 1; }
+        /* 임시 슬라이드 배경색 색상 (추후 img 태그로 대체 가능) */
+        .slide:nth-child(1) { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), #2c3e50; }
+        .slide:nth-child(2) { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), #8e44ad; }
+        .slide:nth-child(3) { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), #27ae60; }
+
+        .hero-text-box { padding: 40px 20px; text-align: center; background: #111; color: #fff; }
+        .hero-text-box h1 { font-size: 28px; font-weight: 900; line-height: 1.4; color: #fff; }
+        .hero-text-box p { font-size: 18px; color: #f1c40f; margin-top: 15px; font-weight: 500; }
+        .hero-text-box h2 { font-size: 22px; color: #ff3d3d; margin-top: 25px; font-weight: 700; }
+
+        /* [전국 20개 숫자 카운트업 & 글로우 효과] */
+        .counter-glow { font-size: 48px; font-weight: 900; color: #ffd700; display: inline-block; transition: text-shadow 0.3s ease; }
+        @keyframes glow-bounce {
+            0%, 100% { text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700; }
+            50% { text-shadow: 0 0 25px #ffd700, 0 0 35px #ff8c00; }
+        }
+        .counter-glow.glow-active { animation: glow-bounce 0.5s ease-in-out 2; }
+
+        /* 2. 문제 공감 섹션 */
+        .pain-point { font-size: 16px; text-align: left; background: #fff; padding: 20px; border-radius: 10px; border-left: 5px solid #ff3d3d; margin: 15px 0; }
+
+        /* 3. 과목 카드 효과 (스크롤 등장 + 호버 테두리 빛남 + 펄스 반복) */
+        .card-grid { margin-top: 20px; }
+        .course-card { background: #fff; padding: 25px 20px; border-radius: 12px; margin-bottom: 20px; text-align: left; border: 2px solid #eee; opacity: 0; transform: translateY(30px); transition: all 0.5s ease; position: relative; }
+        .course-card.show { opacity: 1; transform: translateY(0); animation: card-pulse 3s infinite 2s; }
         
-        /* 1. 히어로 섹션 (상단) */
-        .hero { background: linear-gradient(to bottom, #fffced, #fff); padding-top: 60px; }
-        .hero h1 { font-size: 28px; font-weight: 800; color: #ff6b6b; line-height: 1.3; margin-bottom: 15px; }
-        .hero h1 span { color: #111; font-size: 22px; font-weight: bold; display: block; margin-bottom: 5px; }
-        .hero p { font-size: 16px; color: #666; margin-bottom: 30px; }
+        /* 순서대로 등장 (0.2초 간격) */
+        .course-card:nth-child(1) { transition-delay: 0.2s; }
+        .course-card:nth-child(2) { transition-delay: 0.4s; }
+        .course-card:nth-child(3) { transition-delay: 0.6s; }
+        .course-card:nth-child(4) { transition-delay: 0.8s; }
 
-        /* 2. 차별화 포인트 (왜 이바우펫인가) */
-        .features { background-color: #fafafa; border-radius: 15px; padding: 30px 20px; margin: 20px auto; }
-        .feature-item { background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 15px; text-align: left; border: 1px solid #eee; }
-        .feature-item h3 { font-size: 16px; color: #e67e22; margin-bottom: 5px; }
-        .feature-item p { font-size: 14px; color: #555; }
+        /* 호버 시 은은하게 밝아지며 테두리 빛남 */
+        .course-card:hover { background-color: #fdfdfd; border-color: #ff3d3d; box-shadow: 0 0 15px rgba(255, 61, 61, 0.2); }
+        .course-card h3 { font-size: 18px; color: #111; margin-bottom: 8px; display: flex; align-items: center; }
+        
+        @keyframes card-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.015); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        }
 
-        /* 3. 비포 애프터 섹션 */
-        .before-after { background-color: #fff; }
-        .ba-container { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
-        .ba-box { flex: 1; background: #f9f9f9; padding: 10px; border-radius: 8px; border: 1px solid #ddd; }
-        .ba-box span { display: block; font-weight: bold; padding: 5px; margin-bottom: 10px; color: #fff; border-radius: 4px; }
+        /* 4. 왜 Evaw Pet 카드 효과 (호버 시 배경 변함, 아이콘 확대, 골드 언더라인) */
+        .evaw-card { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 15px; text-align: left; transition: all 0.4s ease; border: 1px solid #ddd; }
+        .evaw-card:hover { background-color: #fffced; }
+        .evaw-card:hover .icon { transform: scale(1.2); }
+        .evaw-card .icon { display: inline-block; font-size: 24px; margin-bottom: 10px; transition: transform 0.3s ease; }
+        
+        .evaw-card h3 { font-size: 18px; color: #111; display: inline-block; position: relative; padding-bottom: 5px; }
+        /* 골드 언더라인 애니메이션 */
+        .evaw-card h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #d4af37; transition: width 0.3s ease; }
+        .evaw-card:hover h3::after { width: 100%; }
+
+        /* 5. 커리큘럼 카드 효과 (위로 떠오름 + 클릭 리플) */
+        .curriculum-card { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e1e1e1; margin-bottom: 15px; text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; cursor: pointer; user-select: none; }
+        .curriculum-card:hover { transform: translateY(-7px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        /* 리플 효과 이펙트 생성을 위한 클래스 */
+        .ripple { position: absolute; background: rgba(255, 61, 61, 0.2); border-radius: 50%; transform: scale(0); animation: ripple-animation 0.6s linear; pointer-events: none; }
+        @keyframes ripple-animation { to { transform: scale(4); opacity: 0; } }
+
+        /* 6. 비포 애프터 섹션 */
+        .ba-container { display: flex; justify-content: space-between; gap: 10px; margin: 20px 0; }
+        .ba-box { flex: 1; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd; }
+        .ba-box span { display: block; font-weight: bold; padding: 6px; margin-bottom: 10px; color: #fff; border-radius: 4px; font-size: 14px; }
         .ba-box.before span { background-color: #7f8c8d; }
-        .ba-box.after span { background-color: #e74c3c; }
-        .ba-desc { font-size: 13px; font-weight: bold; margin-top: 10px; color: #444; }
+        .ba-box.after span { background-color: #ff3d3d; }
 
-        /* 4. 마감 임박 섹션 (경고 박스) */
-        .deadline { background-color: #fff5f5; border: 2px dashed #ff4747; border-radius: 10px; padding: 25px 15px; margin: 30px auto; }
-        .deadline h2 { font-size: 20px; color: #ff1f1f; margin-bottom: 10px; }
-        .deadline p { font-size: 15px; font-weight: bold; color: #333; }
-        .badge { display: inline-block; background-color: #ff1f1f; color: #fff; padding: 5px 10px; border-radius: 20px; font-size: 12px; margin-top: 10px; animation: blink 1s infinite; }
+        /* [자세히 보기 효과 - 스르륵 애니메이션] */
+        .scroll-down-more { display: block; margin: 20px auto 0; text-decoration: none; color: #666; font-size: 14px; font-weight: bold; animation: slide-down-loop 1.5s infinite; }
+        @keyframes slide-down-loop {
+            0% { transform: translateY(-5px); opacity: 0.3; }
+            50% { transform: translateY(5px); opacity: 1; }
+            100% { transform: translateY(-5px); opacity: 0.3; }
+        }
 
-        /* 5. 하단 고정 CTA 버튼 (전화 및 네이버폼) */
+        /* 7. 마감 임박 알림 */
+        .deadline { background-color: #fff5f5; border: 2px dashed #ff3d3d; border-radius: 10px; padding: 25px 15px; margin: 20px 0; }
+        .deadline h3 { color: #ff3d3d; font-size: 20px; margin-bottom: 10px; }
+        .badge { display: inline-block; background-color: #ff3d3d; color: #fff; padding: 5px 12px; border-radius: 20px; font-size: 12px; margin-top: 10px; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        /* 8. FAQ 아코디언 스타일 */
+        .faq-item { text-align: left; background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd; }
+        .faq-item strong { color: #ff3d3d; }
+
+        /* 9. 하단 고정형 더블 CTA 버튼 */
         .fixed-cta { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 600px; display: flex; background: #fff; box-shadow: 0 -3px 10px rgba(0,0,0,0.1); z-index: 1000; }
-        .cta-btn { flex: 1; text-align: center; padding: 18px 10px; font-size: 16px; font-weight: bold; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+        .cta-btn-fixed { flex: 1; text-align: center; padding: 18px 10px; font-size: 16px; font-weight: bold; text-decoration: none; display: flex; align-items: center; justify-content: center; flex-direction: column; }
         .cta-phone { background-color: #f1c40f; color: #000; }
-        .cta-form { background-color: #2ecc71; color: #fff; }
-        
-        /* 여백 확보용 */
-        .spacer { height: 80px; }
+        .cta-kakao { background-color: #fee500; color: #000; }
 
-        /* 깜빡임 애니메이션 */
-        @keyframes blink { 0% {opacity: 1;} 50% {opacity: 0.4;} 100% {opacity: 1;} }
+        footer { font-size: 12px; color: #888; text-align: left; word-break: break-all; }
     </style>
 </head>
 <body>
 
-    <!-- 1. 상단 히어로 섹션 -->
-    <section class="hero">
-        <h1><span>100% 실견 실습으로</span>현장 실력 바로 갖추세요</h1>
-        <p>학원만 다니면 이런 실력? No! 현장 맞춤형 속성 교육</p>
-        <!-- 강아지 메인 이미지가 필요할 경우 여기에 추가 가능 -->
+    <!-- 1. 히어로 이미지 슬라이드쇼 & 퍼스트뷰 -->
+    <div class="hero-slider-container">
+        <!-- 추후 <div class="slide active" style="background-image:url('이미지주소')"> 형태로 변경 가능 -->
+        <div class="slide active">실견 중심 1:1 맞춤 피드백</div>
+        <div class="slide">전국 20개 지점망 연계 인프라</div>
+        <div class="slide">자격증부터 창업 원스톱 가이드</div>
+    </div>
+
+    <div class="hero-text-box">
+        <!-- 카운트업 타겟 지점 -->
+        <div class="counter-glow" id="counter">0</div>
+        <h1>전국 20개 직영 · 누적 수강생 5,600명+</h1>
+        <p>애견미용사가 되고 싶은데,<br>이바우펫을 모른다면 심각한 문제입니다.</p>
+        <h2>“자격증만 따면 끝인가요?”</h2>
+        <p style="color:#fff; font-size:15px; margin-top:10px;">취업도, 창업도 안 되는 이유는 단 하나<br><strong style="color:#ff3d3d;">👉 실견 경험 부족</strong></p>
+    </div>
+
+    <!-- 2. 문제 공감 섹션 -->
+    <div class="gray-bg">
+        <section class="inner section">
+            <h2 class="section-title">혹시 이런 고민 있으신가요?</h2>
+            <div class="pain-point">✔ 자격증은 땄는데 현장 위생/클리핑 유지가 자신 없음</div>
+            <div class="pain-point">✔ 일반 샵에 가면 당장 아무것도 못 할 것 같아 두려움</div>
+            <div class="pain-point">✔ 실전 컷팅 없이 오픈하려니 창업 로드맵이 막막함</div>
+            <p style="margin-top:20px; font-weight:bold;">문제는 '교육 방식(모형 위주 실습)'입니다.</p>
+            
+            <!-- 자세히 보기 스르륵 애니메이션 효과 -->
+            <a href="#courses" class="scroll-down-more">▼ 아래로 내려서 해결책 확인하기</a>
+        </section>
+    </div>
+
+    <!-- 3. 과목 카드 효과 섹션 (스크롤 시 아래에서 등장 + 펄스 효과) -->
+    <section id="courses">
+        <h2 class="section-title">이바우펫 교육 프로그램</h2>
+        <div class="card-grid">
+            <div class="course-card">
+                <h3>✂️ 애견미용 정규 과정</h3>
+                <p>기초 이론 및 견종별 위생, 기본 시저링 핵심 테크닉 완벽 마스터</p>
+            </div>
+            <div class="course-card">
+                <h3>🏆 자격증 속성 취득반</h3>
+                <p>불필요한 타임라인 단축, 최단기 시험 합격을 위한 핵심 요약 지성 트레이닝</p>
+            </div>
+            <div class="course-card">
+                <h3>🐩 실견 중심 실무 심화</h3>
+                <p>모형견 실습 배제, 실제 반려견 가위컷 매칭 중심의 최고 레벨 인텐시브</p>
+            </div>
+            <div class="course-card">
+                <h3>💼 취업 및 창업 마스터 스쿨</h3>
+                <p>고객 응대, 샵 매니지먼트, 상권 분석 및 마케팅 원스톱 인큐베이팅</p>
+            </div>
+        </div>
     </section>
 
-    <!-- 2. 차별화 포인트 섹션 -->
+    <!-- 4. 왜 Evaw Pet 카드 효과 섹션 (호버 효과 및 골드 언더라인) -->
+    <div class="gray-bg">
+        <section class="inner section">
+            <h2 class="section-title">왜 이바우펫은 다를까요?</h2>
+            
+            <div class="evaw-card">
+                <div class="icon">🐶</div>
+                <div>
+                    <h3>100% 가정견 실습</h3>
+                    <p style="font-size:14px; color:#555; margin-top:5px;">상업용 위생견이 아닌 실제 가정 반려견 매칭으로 예측 불가한 현장 감각을 그대로 마스터합니다.</p>
+                </div>
+            </div>
+
+            <div class="evaw-card">
+                <div class="icon">🎯</div>
+                <div>
+                    <h3>1:1 초밀착 맞춤 지도</h3>
+                    <p style="font-size:14px; color:#555; margin-top:5px;">개인별 진도율과 손재주에 맞춘 맞춤형 피드백식 책임제 수업을 약속합니다.</p>
+                </div>
+            </div>
+
+            <div class="evaw-card">
+                <div class="icon">🚀</div>
+                <div>
+                    <h3>돈 버는 실무형 커리큘럼</h3>
+                    <p style="font-size:14px; color:#555; margin-top:5px;">단순 라이선스 획득을 넘어 실제 고객 응대 및 현장 컴플레인 방지 훈련까지 결합했습니다.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 5. 커리큘럼 카드 효과 섹션 (위로 떠오름 + 클릭 시 리플) -->
     <section>
-        <h2 class="section-title">왜 이바우펫애견미용학원인가요?</h2>
-        <div class="features">
-            <div class="feature-item">
-                <h3>V 가정견 100% 실습</h3>
-                <p>실습용 위생견이 아닌 실제 반려견으로 실전 감각을 마스터합니다.</p>
-            </div>
-            <div class="feature-item">
-                <h3>V 초보 맞춤 1:1 지도</h3>
-                <p>수강생 개개인의 진도와 속도에 맞춘 밀착 코칭 시스템</p>
-            </div>
-            <div class="feature-item">
-                <h3>V 취업/창업 원스톱 설계</h3>
-                <p>자격증 취득 후 막막한 미래, 체계적인 로드맵을 제공합니다.</p>
-            </div>
+        <h2 class="section-title">스페셜 실전 커리큘럼</h2>
+        <p style="font-size:14px; color:#666; margin-bottom:20px;">각 단계를 클릭하시면 파장을 확인하실 수 있습니다.</p>
+        
+        <div class="curriculum-card">
+            <h4>[1단계] 기초 위생케어 및 도구 적응</h4>
+            <p style="font-size:13px; color:#777; margin-top:5px;">클리퍼, 가위 그립법부터 안전한 보정법 체득</p>
+        </div>
+        <div class="curriculum-card">
+            <h4>[2단계] 견종별 베이직 클리핑 및 가위컷</h4>
+            <p style="font-size:13px; color:#777; margin-top:5px;">대중적인 펫 미용 스타일 라인업 분석 및 응용</p>
+        </div>
+        <div class="curriculum-card">
+            <h4>[3단계] 고난도 특수견 및 쇼미용 테크닉</h4>
+            <p style="font-size:13px; color:#777; margin-top:5px;">하이클래스 포인트를 살리는 살롱 실무 디자인</p>
         </div>
     </section>
 
-    <!-- 3. 비포 애프터 섹션 -->
-    <section class="before-after">
-        <h2 class="section-title">실력 차이는 결과로 증명됩니다</h2>
-        <div class="ba-container">
-            <div class="ba-box before">
-                <span>BEFORE</span>
-                <!-- 임시 텍스트 배치 (추후 이미지 링크로 변경 가능) -->
-                <p style="padding:20px 0; color:#aaa;">엉킨 털, 정돈되지 않은 상태</p>
+    <!-- 6. 비포 애프터 결과 섹션 -->
+    <div class="gray-bg">
+        <section class="inner section">
+            <h2 class="section-title">실력 차이는 결과로 증명됩니다</h2>
+            <div class="ba-container">
+                <div class="ba-box before">
+                    <span>BEFORE</span>
+                    <p style="padding:25px 0; color:#999; font-size:13px;">❌ 모형견 위주 연습<br>실전 적용 불가</p>
+                </div>
+                <div class="ba-box after">
+                    <span>AFTER</span>
+                    <p style="padding:25px 0; color:#ff3d3d; font-size:13px; font-weight:bold;">✅ 100% 실견 경험<br>즉시 현장 투입 가능</p>
+                </div>
             </div>
-            <div class="ba-box after">
-                <span>AFTER</span>
-                <p style="padding:20px 0; color:#aaa;">깔끔한 라인, 균형 잡힌 컷</p>
-            </div>
-        </div>
-        <p class="ba-desc">이바우펫이 만든 확실한 현장 실력입니다.</p>
-    </section>
+            <p style="font-size:15px; font-weight:bold; color:#111;">이바우펫이 만든 확실한 매출형 실력입니다.</p>
+        </section>
+    </div>
 
-    <!-- 4. 마감 임박 알림 (게시물 마지막 사진 정보 반영) -->
+    <!-- 7. 마감 임박 긴급성 섹션 -->
     <section>
         <div class="deadline">
-            <h2>🚨 정원제 선착순 마감</h2>
-            <p>비용 때문에 꿈을 미루지 마세요. 미용 교육부터 토탈 뷰티과정까지 지원합니다.</p>
-            <p style="margin-top: 10px; color: #ff4747;">⚠️ 경고: 현재 남은 정원이 단 3자리 보류 중입니다.</p>
-            <span class="badge">마감 임박 수강생 모집중</span>
+            <h3>🚨 정원제 선착순 한정 마감</h3>
+            <p style="font-size:14px; font-weight:bold;">비용 때문에 꿈을 미루지 마세요. 미용 교육부터 토탈 뷰티과정까지 특별 지원금을 매칭해 드립니다.</p>
+            <p style="margin-top: 10px; color: #ff3d3d; font-weight:700;">⚠️ 경고: 현재 남은 배정 TO가 단 3자리 보류 중입니다.</p>
+            <span class="badge">지금 기회를 놓치면 동일 조건 지원 불가</span>
         </div>
     </section>
 
-    <!-- 하단 여백 공간 -->
-    <div class="spacer"></div>
+    <!-- 8. FAQ 섹션 (SEO 강화 목적) -->
+    <div class="gray-bg">
+        <section class="inner section">
+            <h2 class="section-title">자주 묻는 질문 (FAQ)</h2>
+            <div class="faq-item">
+                <p><strong>Q. 자격증만 따면 무조건 취업이 되나요?</strong><br>A. 아닙니다. 실견 커팅 경험이 없는 포트폴리오는 샵에서 채용을 꺼립니다. 이바우펫이 실습 위주를 고집하는 이유입니다.</p>
+            </div>
+            <div class="faq-item">
+                <p><strong>Q. 완전 초보나 손재주 없는 사람도 가능한가요?</strong><br>A. 네, 1:1 맞춤 진도식 책임 지도로 기초 가위 그립법부터 눈높이에 맞게 단계별 스텝업이 이루어집니다.</p>
+            </div>
+            <div class="faq-item">
+                <p><strong>Q. 창업 마케팅이나 상권 분석도 도와주나요?</strong><br>A. 전국 20개 직영 네트워크 인프라 데이터 베이스를 기반으로, 오픈 상권 매칭부터 고객 유치 가이드라인까지 동행합니다.</p>
+            </div>
+        </section>
+    </div>
 
-    <!-- 5. 하단 고정 타겟 버튼 (전화연결 / 네이버폼) -->
+    <!-- 9. SEO 텍스트 매체 정보 -->
+    <section style="text-align:left;">
+        <h2 class="section-title" style="display:block; text-align:center;">애견미용학원 올바른 선택 기준</h2>
+        <p style="font-size:14px; color:#555; margin-bottom:12px;">이바우펫은 전국 애견미용학원 중 실견 중심 교육과 검증된 커리큘럼으로 인지도가 높습니다. 부산, 서울, 대구, 인천, 광주, 대전 등 전국 거점망 인프라에서 동일한 고품질 커리큘럼이 운영되며 애견미용 자격증 취득부터 취업, 창업까지 정교하게 연결됩니다.</p>
+        <p style="font-size:14px; color:#555;">애견미용학원 추천 리스트, 애견미용 국비지원 유무, 애견미용 비용 설계, 애견미용 자격증 3급 2급 과정 준비를 고민 중이시라면 반드시 실습 견수를 비교해 보세요.</p>
+    </section>
+
+    <!-- 10. 하단 사이트맵 및 로봇 테크니컬 영역 -->
+    <div class="gray-bg">
+        <footer class="inner section" style="padding:30px 20px;">
+            <p style="margin-bottom:8px;">📌 <strong>사이트맵 안내:</strong><br>https://irpark0223-cyber.github.io/evawpet_irpark/sitemap.xml</p>
+            <p>📌 <strong>검색엔진 로봇 제어 규칙:</strong><br>User-agent: * / Allow: / (robots.txt 설정 최적화 완료)</p>
+        </footer>
+    </div>
+
+    <!-- 하단 고정 타겟 액션 바 -->
     <div class="fixed-cta">
-        <!-- 클릭 시 바로 전화 걸기 연결 -->
-        <a href="tel:010-6501-0591" class="cta-btn cta-phone">
-            📞 상담전화<br>010-6501-0591
+        <a href="tel:010-6501-0591" class="cta-btn-fixed cta-phone">
+            <span>📞 직통 전화 문의</span>
+            <span style="font-size:12px; font-weight:normal;">010-6501-0591</span>
         </a>
-        <!-- 클릭 시 네이버폼 주소로 이동 (# 대신 실제 네이버폼 링크를 입력하세요) -->
-        <a href="#" class="cta-btn cta-form">
-            📝 네이버폼 문의<br>지금 바로 상담 신청하기
+        <!-- 카카오톡 채널 상담 주소 혹은 네이버폼 이동 연결창 (# 자리에 링크 삽입 가능) -->
+        <a href="#" class="cta-btn-fixed cta-kakao">
+            <span>💬 카카오톡 원격 상담</span>
+            <span style="font-size:12px; font-weight:normal;">실시간 정원 확인하기</span>
         </a>
     </div>
 
+    <!-- [자바스크립트 모듈 인터랙션] -->
+    <script>
+        // 1. 히어로 이미지 페이드아웃 슬라이드쇼 (2초 주기)
+        const slides = document.querySelectorAll('.slide');
+        let currentSlideIdx = 0;
+        setInterval(() => {
+            slides[currentSlideIdx].classList.remove('active');
+            currentSlideIdx = (currentSlideIdx + 1) % slides.length;
+            slides[currentSlideIdx].classList.add('active');
+        }, 2000);
+
+        // 2. 전국 20개 숫자 카운트업 무한루프 + 골드 글로우 반복 (3초 유지)
+        const counterEl = document.getElementById('counter');
+        function runCounterLoop() {
+            let currentNum = 0;
+            counterEl.classList.remove('glow-active');
+            counterEl.innerText = "0";
+            
+            const timer = setInterval(() => {
+                currentNum++;
+                counterEl.innerText = currentNum;
+                if(currentNum >= 20) {
+                    clearInterval(timer);
+                    // 20 도달 시 글로우 작동
+                    counterEl.classList.add('glow-active');
+                    // 3초 유지 후 재귀 루프 호출
+                    setTimeout(runCounterLoop, 3000);
+                }
+            }, 50); // 카운팅 속도 조절
+        }
+        window.addEventListener('DOMContentLoaded', runCounterLoop);
+
+        // 3. 스크롤 인터랙션 (과목 카드들이 화면 하단 감지 시 0.2초 간격 순차 등장)
+        const courseCards = document.querySelectorAll('.course-card');
+        const observerOptions = { threshold: 0.1 };
+        const cardObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    // 화면에 진입하면 일괄 클래스 추가 (CSS 딜레이에 의해 순차 동작)
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        courseCards.forEach(card => cardObserver.observe(card));
+
+        // 4. 커리큘럼 카드 클릭 시 리플(Ripple) 물결 시각 효과 발생기
+        const curriculumCards = document.querySelectorAll('.curriculum-card');
+        curriculumCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const rippleCircle = document.createElement('span');
+                rippleCircle.classList.add('ripple');
+                rippleCircle.style.left = `${x}px`;
+                rippleCircle.style.top = `${y}px`;
+                
+                this.appendChild(rippleCircle);
+                setTimeout(() => rippleCircle.remove(), 600);
+            });
+        });
+    </script>
 </body>
 </html>
