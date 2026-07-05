@@ -103,17 +103,68 @@
         .ba-box.before span { background-color: #64748b; }
         .ba-box.after span { background-color: #0a192f; background: linear-gradient(135deg, #0a192f, #1e293b); color: #d4af37; }
 
-        /* [신규 추가] 6-2. 수강생 실견 포트폴리오 갤러리 섹션 */
+        /* [신규 변경] 6-2. 프리미엄 터치 스냅 가로 슬라이스 갤러리 스타일 */
         .portfolio-notice { background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; padding: 15px; margin-bottom: 30px; font-size: 15px; font-weight: 700; color: #0a192f; text-align: center; }
-        .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
-        .portfolio-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: all 0.3s ease; }
-        .portfolio-item:hover { transform: translateY(-4px); border-color: #d4af37; box-shadow: 0 8px 16px rgba(212,175,55,0.1); }
-        .portfolio-img-box { position: relative; width: 100%; aspect-ratio: 1 / 1; background: #f1f5f9; overflow: hidden; }
-        .portfolio-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .portfolio-item:hover .portfolio-img-box img { transform: scale(1.06); }
-        .portfolio-desc { padding: 12px 10px; text-align: center; background: #fff; border-top: 1px solid #f1f5f9; }
-        .portfolio-desc h4 { font-size: 14px; font-weight: 700; color: #0a192f; margin-bottom: 2px; }
-        .portfolio-desc p { font-size: 12px; color: #64748b; }
+        
+        .portfolio-slider-wrapper {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 10px 20px 25px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .portfolio-slider-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .portfolio-slide-item {
+            flex: 0 0 75%;
+            max-width: 320px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            scroll-snap-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+        .portfolio-slide-item:hover {
+            border-color: #d4af37;
+            transform: translateY(-4px);
+        }
+        .portfolio-slide-img-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #f1f5f9;
+            overflow: hidden;
+        }
+        .portfolio-slide-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .portfolio-slide-item:hover .portfolio-slide-img-box img {
+            transform: scale(1.06);
+        }
+        .portfolio-desc {
+            padding: 14px 12px;
+            text-align: center;
+            background: #fff;
+            border-top: 1px solid #f1f5f9;
+        }
+        .portfolio-desc h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0a192f;
+            margin-bottom: 2px;
+        }
+        .portfolio-desc p {
+            font-size: 12px;
+            color: #64748b;
+        }
 
         /* 스르륵 안내 화살표 */
         .scroll-down-more { display: block; margin: 25px auto 0; text-decoration: none; color: #94a3b8; font-size: 14px; font-weight: 500; animation: slide-down-loop 1.5s infinite; }
@@ -188,7 +239,7 @@
             <div class="pain-point"><span>✔</span> 일반 샵에 가면 당장 아무것도 못 할 것 같아 두려움</div>
             <div class="pain-point"><span>✔</span> 실전 컷팅 없이 오픈하려니 창업 로드맵이 막막함</div>
             
-            <p style="margin-top:25px; font-weight:700; color: #0a192f;">문제는 '교육 방식(모형 위주 실습)'입니다.</p>
+            <p style="margin-top:25px; font-weight:700; color: #0a192f;">문제 문제는 '교육 방식(모형 위주 실습)'입니다.</p>
             <a href="#courses" class="scroll-down-more">▼ 아래로 내려서 프리미엄 해결책 확인하기</a>
         </section>
     </div>
@@ -289,39 +340,40 @@
         </section>
     </div>
 
-    <!-- [신규 반영] 6-2. 수강생 포트폴리오 제목 폼 및 이미지 그리드 영역 -->
-    <section id="portfolio">
-        <h2 class="section-title">수강생 실전 포트폴리오</h2>
-        <div class="portfolio-notice">
-            ✨ 이바우펫 수강생들이 100% 가정견으로 직접 완성한 포트폴리오입니다.
+    <!-- [수정 완료] 6-2. 수강생 포트폴리오 가로 스냅 슬라이스형 갤러리 영역 -->
+    <section id="portfolio" style="padding-left: 0; padding-right: 0;">
+        <h2 class="section-title" style="padding: 0 20px;">수강생 실전 포트폴리오</h2>
+        <div class="portfolio-notice" style="margin-left: 20px; margin-right: 20px;">
+            ✨ 좌우로 부드럽게 밀어서(스와이프) 수강생들의 작품을 확인해 보세요.
         </div>
         
-        <div class="portfolio-grid">
+        <!-- 가로 슬라이더 시작 -->
+        <div class="portfolio-slider-wrapper">
             <!-- 이미지 1 -->
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-img-box">
                     <img src="이미지_주소_1" alt="전문애견미용교육기관">
-                </div>
-                <div class="portfolio-desc">
-                    <h4>결과를증명하는</h4>
-                    <p>이바우펫애견미용학원</p>
-                </div>
-            </div>
-
-            <!-- 이미지 2 -->
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
-                    <img src="1https://googleusercontent.com/image_generation_content/1
-" alt="전문애견미용교육기관">
                 </div>
                 <div class="portfolio-desc">
                     <h4>결과를 증명하는</h4>
                     <p>이바우펫애견미용학원</p>
                 </div>
             </div>
+
+            <!-- 이미지 2 -->
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-img-box">
+                    <img src="https://googleusercontent.com/image_generation_content/1" alt="전문애견미용교육기관">
+                </div>
+                <div class="portfolio-desc">
+                    <h4>결과를 증명하는</h4>
+                    <p>이바우펫애견미용학원</p>
+                </div>
+            </div>
+
             <!-- 이미지 3 -->
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-img-box">
                     <img src="https://googleusercontent.com/image_generation_content/2" alt="전문애견미용교육기관">
                 </div>
                 <div class="portfolio-desc">
@@ -329,9 +381,10 @@
                     <p>이바우펫애견미용학원</p>
                 </div>
             </div>
+
             <!-- 이미지 4 -->
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-img-box">
                     <img src="https://googleusercontent.com/image_generation_content/3" alt="전문애견미용교육기관">
                 </div>
                 <div class="portfolio-desc">
@@ -339,40 +392,44 @@
                     <p>이바우펫애견미용학원</p>
                 </div>
             </div>
+
             <!-- 이미지 5 -->
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
-                    <img src="2https://googleusercontent.com/image_generation_content/4" alt="전문애견미용교육기관">
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-img-box">
+                    <img src="https://googleusercontent.com/image_generation_content/4" alt="전문애견미용교육기관">
                 </div>
                 <div class="portfolio-desc">
                     <h4>결과를 증명하는</h4>
                     <p>이바우펫애견미용학원</p>
                 </div>
             </div>
-            <!-- 1https://googleusercontent.com/image_generation_content/310 -->
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
-                    <img src="1https://googleusercontent.com/image_generation_content/310" alt="전문애견미용교육기관">
+
+            <!-- 이미지 6 -->
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-img-box">
+                    <img src="https://googleusercontent.com/image_generation_content/310" alt="전문애견미용교육기관">
                 </div>
                 <div class="portfolio-desc">
                     <h4>결과를 증명하는</h4>
                     <p>이바우펫애견미용학원</p>
                 </div>
             </div>
+
             <!-- 이미지 7 -->
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
-                    <img src="2https://googleusercontent.com/image_generation_content/314" alt="전문애견미용교육기관7">
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-img-box">
+                    <img src="https://googleusercontent.com/image_generation_content/314" alt="전문애견미용교육기관7">
                 </div>
                 <div class="portfolio-desc">
                     <h4>결과를 증명하는</h4>
                     <p>이바우펫애견미용학원</p>
                 </div>
             </div>
+
             <!-- 이미지 8 -->
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
-                    <img src="2https://googleusercontent.com/image_generation_content/318" alt="전문애견미용교육기관">
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-img-box">
+                    <img src="https://googleusercontent.com/image_generation_content/318" alt="전문애견미용교육기관">
                 </div>
                 <div class="portfolio-desc">
                     <h4>결과를 증명하는</h4>
@@ -380,14 +437,14 @@
                 </div>
             </div>
         </div>
+        <!-- 가로 슬라이더 끝 -->
     </section>
 
     <!-- 7. 마감 임박 긴급성 섹션 (전환율 2배 극대화 장치) -->
     <section>
         <div class="deadline">
             <h3>🚨 프리미엄 과정 정원제 선착순 한정 마감</h3>
-            <p style="font-size:14px; font-weight:500; color:#6b7280; line-height:1.6;">비용 때문에 꿈을 미루지 마세요. 미용 교육부터 토탈 뷰티과정까지 
-                특별 지원금을 매칭해 드립니다.</p>
+            <p style="font-size:14px; font-weight:500; color:#6b7280; line-height:1.6;">비용 때문에 꿈을 미루지 마세요. 미용 교육부터 토탈 뷰티과정까지 특별 지원금을 매칭해 드립니다.</p>
             <p style="margin-top: 12px; color: #ff4d4d; font-weight:700; font-size:15px;">⚠️ 경고: 현재 남은 배정 TO가 단 3자리 보류 중입니다.</p>
             
             <!-- 바로 작성 가능한 네이버폼 연결 버튼 -->
