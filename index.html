@@ -1,40 +1,128 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>이바우펫 애견미용학원</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {margin:0; font-family:sans-serif;}
-    section {padding:60px 20px; text-align:center;}
-    .hero {background:#f8f8f8;}
-    .cta {background:#22c55e; color:#fff; padding:15px 30px; display:inline-block; margin-top:20px;}
-  </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이바우펫 애견미용학원 - 단기속성 실견중심</title>
+    <style>
+        /* 기본 스타일 리셋 */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Malgun Gothic', sans-serif; line-height: 1.6; color: #333; background-color: #fff; }
+        img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        
+        /* 공통 섹션 스타일 */
+        section { padding: 50px 20px; text-align: center; max-width: 600px; margin: 0 auto; }
+        .section-title { font-size: 24px; font-weight: bold; margin-bottom: 25px; color: #111; }
+        
+        /* 1. 히어로 섹션 (상단) */
+        .hero { background: linear-gradient(to bottom, #fffced, #fff); padding-top: 60px; }
+        .hero h1 { font-size: 28px; font-weight: 800; color: #ff6b6b; line-height: 1.3; margin-bottom: 15px; }
+        .hero h1 span { color: #111; font-size: 22px; font-weight: bold; display: block; margin-bottom: 5px; }
+        .hero p { font-size: 16px; color: #666; margin-bottom: 30px; }
 
+        /* 2. 차별화 포인트 (왜 이바우펫인가) */
+        .features { background-color: #fafafa; border-radius: 15px; padding: 30px 20px; margin: 20px auto; }
+        .feature-item { background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 15px; text-align: left; border: 1px solid #eee; }
+        .feature-item h3 { font-size: 16px; color: #e67e22; margin-bottom: 5px; }
+        .feature-item p { font-size: 14px; color: #555; }
+
+        /* 3. 비포 애프터 섹션 */
+        .before-after { background-color: #fff; }
+        .ba-container { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
+        .ba-box { flex: 1; background: #f9f9f9; padding: 10px; border-radius: 8px; border: 1px solid #ddd; }
+        .ba-box span { display: block; font-weight: bold; padding: 5px; margin-bottom: 10px; color: #fff; border-radius: 4px; }
+        .ba-box.before span { background-color: #7f8c8d; }
+        .ba-box.after span { background-color: #e74c3c; }
+        .ba-desc { font-size: 13px; font-weight: bold; margin-top: 10px; color: #444; }
+
+        /* 4. 마감 임박 섹션 (경고 박스) */
+        .deadline { background-color: #fff5f5; border: 2px dashed #ff4747; border-radius: 10px; padding: 25px 15px; margin: 30px auto; }
+        .deadline h2 { font-size: 20px; color: #ff1f1f; margin-bottom: 10px; }
+        .deadline p { font-size: 15px; font-weight: bold; color: #333; }
+        .badge { display: inline-block; background-color: #ff1f1f; color: #fff; padding: 5px 10px; border-radius: 20px; font-size: 12px; margin-top: 10px; animation: blink 1s infinite; }
+
+        /* 5. 하단 고정 CTA 버튼 (전화 및 네이버폼) */
+        .fixed-cta { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 600px; display: flex; background: #fff; box-shadow: 0 -3px 10px rgba(0,0,0,0.1); z-index: 1000; }
+        .cta-btn { flex: 1; text-align: center; padding: 18px 10px; font-size: 16px; font-weight: bold; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+        .cta-phone { background-color: #f1c40f; color: #000; }
+        .cta-form { background-color: #2ecc71; color: #fff; }
+        
+        /* 여백 확보용 */
+        .spacer { height: 80px; }
+
+        /* 깜빡임 애니메이션 */
+        @keyframes blink { 0% {opacity: 1;} 50% {opacity: 0.4;} 100% {opacity: 1;} }
+    </style>
+</head>
 <body>
 
-<section class="hero">
-  <h1>100% 실견 실습으로<br>현장 실력 바로 갖추세요</h1>
-  <a class="cta" href="#">상담 신청하기</a>
-</section>
+    <!-- 1. 상단 히어로 섹션 -->
+    <section class="hero">
+        <h1><span>100% 실견 실습으로</span>현장 실력 바로 갖추세요</h1>
+        <p>학원만 다니면 이런 실력? No! 현장 맞춤형 속성 교육</p>
+        <!-- 강아지 메인 이미지가 필요할 경우 여기에 추가 가능 -->
+    </section>
 
-<section>
-  <h2>자격증 따고 막막하셨나요?</h2>
-</section>
+    <!-- 2. 차별화 포인트 섹션 -->
+    <section>
+        <h2 class="section-title">왜 이바우펫애견미용학원인가요?</h2>
+        <div class="features">
+            <div class="feature-item">
+                <h3>V 가정견 100% 실습</h3>
+                <p>실습용 위생견이 아닌 실제 반려견으로 실전 감각을 마스터합니다.</p>
+            </div>
+            <div class="feature-item">
+                <h3>V 초보 맞춤 1:1 지도</h3>
+                <p>수강생 개개인의 진도와 속도에 맞춘 밀착 코칭 시스템</p>
+            </div>
+            <div class="feature-item">
+                <h3>V 취업/창업 원스톱 설계</h3>
+                <p>자격증 취득 후 막막한 미래, 체계적인 로드맵을 제공합니다.</p>
+            </div>
+        </div>
+    </section>
 
-<section>
-  <h2>왜 이바우펫애견미용학원인가?</h2>
-</section>
+    <!-- 3. 비포 애프터 섹션 -->
+    <section class="before-after">
+        <h2 class="section-title">실력 차이는 결과로 증명됩니다</h2>
+        <div class="ba-container">
+            <div class="ba-box before">
+                <span>BEFORE</span>
+                <!-- 임시 텍스트 배치 (추후 이미지 링크로 변경 가능) -->
+                <p style="padding:20px 0; color:#aaa;">엉킨 털, 정돈되지 않은 상태</p>
+            </div>
+            <div class="ba-box after">
+                <span>AFTER</span>
+                <p style="padding:20px 0; color:#aaa;">깔끔한 라인, 균형 잡힌 컷</p>
+            </div>
+        </div>
+        <p class="ba-desc">이바우펫이 만든 확실한 현장 실력입니다.</p>
+    </section>
 
-<section>
-  <h2>실력 차이는 결과로 증명됩니다</h2>
-</section>
+    <!-- 4. 마감 임박 알림 (게시물 마지막 사진 정보 반영) -->
+    <section>
+        <div class="deadline">
+            <h2>🚨 정원제 선착순 마감</h2>
+            <p>비용 때문에 꿈을 미루지 마세요. 미용 교육부터 토탈 뷰티과정까지 지원합니다.</p>
+            <p style="margin-top: 10px; color: #ff4747;">⚠️ 경고: 현재 남은 정원이 단 3자리 보류 중입니다.</p>
+            <span class="badge">마감 임박 수강생 모집중</span>
+        </div>
+    </section>
 
-<section>
-  <h2>정원제 선착순 마감</h2>
-  <a class="cta" href="#">지금 상담하기</a>
-</section>
+    <!-- 하단 여백 공간 -->
+    <div class="spacer"></div>
+
+    <!-- 5. 하단 고정 타겟 버튼 (전화연결 / 네이버폼) -->
+    <div class="fixed-cta">
+        <!-- 클릭 시 바로 전화 걸기 연결 -->
+        <a href="tel:010-6501-0591" class="cta-btn cta-phone">
+            📞 상담전화<br>010-6501-0591
+        </a>
+        <!-- 클릭 시 네이버폼 주소로 이동 (# 대신 실제 네이버폼 링크를 입력하세요) -->
+        <a href="#" class="cta-btn cta-form">
+            📝 네이버폼 문의<br>지금 바로 상담 신청하기
+        </a>
+    </div>
 
 </body>
 </html>
