@@ -103,14 +103,16 @@
         .ba-box.before span { background-color: #64748b; }
         .ba-box.after span { background-color: #0a192f; background: linear-gradient(135deg, #0a192f, #1e293b); color: #d4af37; }
 
-        /* [신규 변경] 6-2. 프리미엄 터치 스냅 가로 슬라이스 갤러리 스타일 */
+        /* 6-2. 프리미엄 터치 스냅 가로 슬라이스 갤러리 스타일 (자동 스크롤 호환 보완) */
         .portfolio-notice { background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; padding: 15px; margin-bottom: 30px; font-size: 15px; font-weight: 700; color: #0a192f; text-align: center; }
         
         .portfolio-slider-wrapper {
             display: flex;
             gap: 16px;
             overflow-x: auto;
+            /* 자바스크립트 자동 이동 시 튕김 현상을 방지하기 위해 롤링 중에는 스냅을 부드럽게 연동합니다 */
             scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
             padding: 10px 20px 25px;
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
@@ -127,7 +129,7 @@
             overflow: hidden;
             scroll-snap-align: center;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease, transform 0.3s ease;
         }
         .portfolio-slide-item:hover {
             border-color: #d4af37;
@@ -340,7 +342,7 @@
         </section>
     </div>
 
-    <!-- [수정 완료] 6-2. 수강생 포트폴리오 가로 스냅 슬라이스형 갤러리 영역 -->
+    <!-- 6-2. 수강생 포트폴리오 가로 스냅 슬라이스형 갤러리 영역 (자동 이동 반영) -->
     <section id="portfolio" style="padding-left: 0; padding-right: 0;">
         <h2 class="section-title" style="padding: 0 20px;">수강생 실전 포트폴리오</h2>
         <div class="portfolio-notice" style="margin-left: 20px; margin-right: 20px;">
@@ -348,7 +350,7 @@
         </div>
         
         <!-- 가로 슬라이더 시작 -->
-        <div class="portfolio-slider-wrapper">
+        <div class="portfolio-slider-wrapper" id="portfolioWrapper">
             <!-- 이미지 1 -->
             <div class="portfolio-slide-item">
                 <div class="portfolio-slide-img-box">
@@ -440,7 +442,7 @@
         <!-- 가로 슬라이더 끝 -->
     </section>
 
-    <!-- 7. 마감 임박 긴급성 섹션 (전환율 2배 극대화 장치) -->
+    <!-- 7. 마감 임박 긴급성 섹션 -->
     <section>
         <div class="deadline">
             <h3>🚨 프리미엄 과정 정원제 선착순 한정 마감</h3>
@@ -454,7 +456,7 @@
         </div>
     </section>
 
-    <!-- 8. FAQ 섹션 (SEO 강화 및 의문 해소) -->
+    <!-- 8. FAQ 섹션 -->
     <div class="gray-bg">
         <section class="inner section">
             <h2 class="section-title">자주 묻는 질문 (FAQ)</h2>
@@ -566,7 +568,50 @@
                 setTimeout(() => rippleCircle.remove(), 600);
             });
         });
+
+        // [신규 추가] 수강생 실전 포트폴리오 가로 스냅 자동 슬라이더 로직
+        const sliderWrapper = document.getElementById('portfolioWrapper');
+        const slideItems = document.querySelectorAll('.portfolio-slide-item');
+        let currentPortfolioIdx = 0;
+        const totalSlides = slideItems.length;
+
+        function autoScrollPortfolio() {
+            currentPortfolioIdx++;
+            if (currentPortfolioIdx >= totalSlides) {
+                currentPortfolioIdx = 0; // 마지막 사진 다음에는 다시 처음으로 리셋
+            }
+            
+            const targetSlide = slideItems[currentPortfolioIdx];
+            if (targetSlide) {
+                // 부모 컨테이너 기준 해당 사진의 위치를 계산해 스크롤 이동시킵니다
+                const wrapperLeft = sliderWrapper.getBoundingClientRect().left;
+                const slideLeft = targetSlide.getBoundingClientRect().left;
+                const scrollOffset = slideLeft - wrapperLeft + sliderWrapper.scrollLeft;
+                
+                // 가운뎃점 스냅 정렬 오차 보정 계산
+                const centerAdjust = (sliderWrapper.clientWidth - targetSlide.clientWidth) / 2;
+                
+                sliderWrapper.scrollTo({
+                    left: scrollOffset - centerAdjust,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // 3초(3000ms)마다 다음 포트폴리오 사진으로 자동 롤링
+        let portfolioInterval = setInterval(autoScrollPortfolio, 3000);
+
+        // 사용자가 손가락 터치나 마우스 드래그를 시작하면 자동 롤링을 잠시 멈췄다가 떼면 재개되도록 설정합니다
+        sliderWrapper.addEventListener('touchstart', () => clearInterval(portfolioInterval));
+        sliderWrapper.addEventListener('touchend', () => {
+            clearInterval(portfolioInterval);
+            portfolioInterval = setInterval(autoScrollPortfolio, 3000);
+        });
+        sliderWrapper.addEventListener('mousedown', () => clearInterval(portfolioInterval));
+        sliderWrapper.addEventListener('mouseup', () => {
+            clearInterval(portfolioInterval);
+            portfolioInterval = setInterval(autoScrollPortfolio, 3000);
+        });
     </script>
 </body>
 </html>
-이걸로 랜딩페이지 사용할거야. 
