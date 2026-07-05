@@ -103,6 +103,18 @@
         .ba-box.before span { background-color: #64748b; }
         .ba-box.after span { background-color: #0a192f; background: linear-gradient(135deg, #0a192f, #1e293b); color: #d4af37; }
 
+        /* [신규 추가] 6-2. 수강생 실견 포트폴리오 갤러리 섹션 */
+        .portfolio-notice { background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; padding: 15px; margin-bottom: 30px; font-size: 15px; font-weight: 700; color: #0a192f; text-align: center; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .portfolio-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: all 0.3s ease; }
+        .portfolio-item:hover { transform: translateY(-4px); border-color: #d4af37; box-shadow: 0 8px 16px rgba(212,175,55,0.1); }
+        .portfolio-img-box { position: relative; width: 100%; aspect-ratio: 1 / 1; background: #f1f5f9; overflow: hidden; }
+        .portfolio-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .portfolio-item:hover .portfolio-img-box img { transform: scale(1.06); }
+        .portfolio-desc { padding: 12px 10px; text-align: center; background: #fff; border-top: 1px solid #f1f5f9; }
+        .portfolio-desc h4 { font-size: 14px; font-weight: 700; color: #0a192f; margin-bottom: 2px; }
+        .portfolio-desc p { font-size: 12px; color: #64748b; }
+
         /* 스르륵 안내 화살표 */
         .scroll-down-more { display: block; margin: 25px auto 0; text-decoration: none; color: #94a3b8; font-size: 14px; font-weight: 500; animation: slide-down-loop 1.5s infinite; }
         @keyframes slide-down-loop {
@@ -142,7 +154,7 @@
 </head>
 <body>
 
-    <!-- 1. 프리미엄 히어로 이미지 슬라이드쇼 & 퍼스트뷰 -->
+    <!-- 1. 프리미엄 히어로 이미지 슬라이드쇼 & 퍼스트뷰 (2초 주기 롤링) -->
     <div class="hero-slider-container">
         <div class="slide active">
             <h3>실견 중심 밀착 맞춤 피드백</h3>
@@ -277,6 +289,97 @@
         </section>
     </div>
 
+    <!-- [신규 반영] 6-2. 수강생 포트폴리오 제목 폼 및 이미지 그리드 영역 -->
+    <section id="portfolio">
+        <h2 class="section-title">수강생 실전 포트폴리오</h2>
+        <div class="portfolio-notice">
+            ✨ 이바우펫 수강생들이 100% 가정견으로 직접 완성한 포트폴리오입니다.
+        </div>
+        
+        <div class="portfolio-grid">
+            <!-- 이미지 1 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img-box">
+                    <img src="이미지_주소_1" alt="수강생 작품 1">
+                </div>
+                <div class="portfolio-desc">
+                    <h4>푸들 테디베어 컷</h4>
+                    <p>정규반 3개월 차 수강생작</p>
+                </div>
+            </div>
+            <!-- 이미지 2 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img-box">
+                    <img src="이미지_주소_2" alt="수강생 작품 2">
+                </div>
+                <div class="portfolio-desc">
+                    <h4>포메라니안 곰돌이 컷</h4>
+                    <p>심화 실무반 수강생작</p>
+                </div>
+            </div>
+            <!-- 이미지 3 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img-box">
+                    <img src="이미지_주소_3" alt="수강생 작품 3">
+                </div>
+                <div class="portfolio-desc">
+                    <h4>비숑프리제 하이바 컷</h4>
+                    <p>창업 마스터반 수강생작</p>
+                </div>
+            </div>
+            <!-- 이미지 4 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img-box">
+                    <img src="이미지_주소_4" alt="수강생 작품 4">
+                </div>
+                <div class="portfolio-desc">
+                    <h4>말티즈 베이비 컷</h4>
+                    <p>정규반 4개월 차 수강생작</p>
+                </div>
+            </div>
+            <!-- 이미지 5 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img-box">
+                    <img src="이미지_주소_5" alt="수강생 작품 5">
+                </div>
+                <div class="portfolio-desc">
+                    <h4>시츄 스포팅 디자인</h4>
+                    <p>속성 취득반 수강생작</p>
+                </div>
+            </div>
+            <!-- 이미지 6 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img-box">
+                    <img src="이미지_주소_6" alt="수강생 작품 6">
+                </div>
+                <div class="portfolio-desc">
+                    <h4>슈나우저 라인 시저링</h4>
+                    <p>심화 실무반 수강생작</p>
+                </div>
+            </div>
+            <!-- 이미지 7 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img-box">
+                    <img src="이미지_주소_7" alt="수강생 작품 7">
+                </div>
+                <div class="portfolio-desc">
+                    <h4>요크셔테리어 전체 시저링</h4>
+                    <p>정규반 5개월 차 수강생작</p>
+                </div>
+            </div>
+            <!-- 이미지 8 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img-box">
+                    <img src="이미지_주소_8" alt="수강생 작품 8">
+                </div>
+                <div class="portfolio-desc">
+                    <h4>펫살롱 트렌디 스타일 컷</h4>
+                    <p>창업 프로 마스터작</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 7. 마감 임박 긴급성 섹션 (전환율 2배 극대화 장치) -->
     <section>
         <div class="deadline">
@@ -345,14 +448,14 @@
 
     <!-- [자바스크립트 모듈 인터랙션] -->
     <script>
-        // 1. 히어로 이미지 페이드아웃 슬라이드쇼 (2.5초 주기)
+        // 1. 히어로 이미지 페이드아웃 슬라이드쇼 (요청사항 반영: 2.0초 주기 상향 세팅)
         const slides = document.querySelectorAll('.slide');
         let currentSlideIdx = 0;
         setInterval(() => {
             slides[currentSlideIdx].classList.remove('active');
             currentSlideIdx = (currentSlideIdx + 1) % slides.length;
             slides[currentSlideIdx].classList.add('active');
-        }, 2500);
+        }, 2000);
 
         // 2. 전국 20개 숫자 카운트업 무한루프 + 골드 글로우 반복
         const counterEl = document.getElementById('counter');
@@ -367,7 +470,7 @@
                 if(currentNum >= 20) {
                     clearInterval(timer);
                     counterEl.classList.add('glow-active');
-                    setTimeout(runCounterLoop, 4000); // 도달 후 유지 시간 상향 (4초)
+                    setTimeout(runCounterLoop, 4000); 
                 }
             }, 50);
         }
