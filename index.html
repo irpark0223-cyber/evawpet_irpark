@@ -486,7 +486,6 @@
             margin-bottom: 40px; 
         }
 
-        /* 말풍선 공통 스타일 */
         .speech-bubble {
             background: white; color: var(--navy); padding: 30px; border-radius: 20px;
             max-width: 600px; width: 90%; margin: 15px auto;
@@ -494,7 +493,7 @@
             background-image: linear-gradient(white, white), linear-gradient(to right, #C9A84C, #F4E4A1, #C9A84C);
             background-origin: border-box; background-clip: padding-box, border-box;
             
-            /* 반복 애니메이션 설정 (forwards 제거) */
+            /* 전체 주기 6초, 1개당 2초 간격 애니메이션 설정 */
             opacity: 0;
             transform: scale(0);
             animation: bubbleLoop 6s infinite;
@@ -515,15 +514,14 @@
             50% { opacity: 0; }
         }
 
-        /* 반복 애니메이션 정의 */
+        /* 6초 주기 애니메이션 정의 */
         @keyframes bubbleLoop {
-            0% { transform: scale(0); opacity: 0; }
-            10% { transform: scale(1); opacity: 1; }
-            80% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0); opacity: 0; }
+            0%, 33.3% { transform: scale(0); opacity: 0; }
+            5%, 28.3% { transform: scale(1); opacity: 1; }
+            33.3%, 100% { transform: scale(0); opacity: 0; }
         }
 
-        /* 순차적 등장 딜레이 */
+        /* 각 말풍선이 2초씩 밀려서 나타나도록 설정 */
         .bubble1 { animation-delay: 0s; }
         .bubble2 { animation-delay: 2s; }
         .bubble3 { animation-delay: 4s; }
