@@ -557,11 +557,19 @@
             background-image: linear-gradient(white, white), linear-gradient(to right, #C9A84C, #F4E4A1, #C9A84C);
             background-origin: border-box; background-clip: padding-box, border-box;
             
-            /* 전체 주기 6초, 1개당 2초 간격 애니메이션 설정 */
+            /* 초기 상태: 투명하고 안 보임 */
             opacity: 0;
             transform: scale(0);
-            animation: bubbleLoop 6s infinite;
+            /* 전체 8초 루프 (3개 등장 + 유지시간) */
+            animation: showAndStay 8s infinite;
             position: relative;
+        }
+
+        @keyframes showAndStay {
+            0% { opacity: 0; transform: scale(0); }
+            10% { opacity: 1; transform: scale(1); } /* 폼 등장 및 유지 */
+            90% { opacity: 1; transform: scale(1); } /* 폼 유지 */
+            100% { opacity: 0; transform: scale(0); } /* 다시 시작을 위해 사라짐 */
         }
 
         /* 2.5초 간격 깜빡임 커서 */
@@ -578,14 +586,7 @@
             50% { opacity: 0; }
         }
 
-        /* 6초 주기 애니메이션 정의 */
-        @keyframes bubbleLoop {
-            0%, 33.3% { transform: scale(0); opacity: 0; }
-            5%, 28.3% { transform: scale(1); opacity: 1; }
-            33.3%, 100% { transform: scale(0); opacity: 0; }
-        }
-
-        /* 각 말풍선이 2초씩 밀려서 나타나도록 설정 */
+        /* 2초 간격으로 순차 등장 */
         .bubble1 { animation-delay: 0s; }
         .bubble2 { animation-delay: 2s; }
         .bubble3 { animation-delay: 4s; }
