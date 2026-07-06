@@ -254,13 +254,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --navy: #16213E;
-            --gold: #C9A84C;
-            --bg-main: #F8F9FC;
-        }
-
-        body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg-main); }
+        /* 기본 리셋 및 배경 설정 */
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; background-color: #F8F9FC; }
         
         .background {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -269,48 +265,53 @@
             filter: brightness(1.1) opacity(0.1); z-index: -1;
         }
 
-        .container { display: flex; flex-direction: column; align-items: center; padding: 50px 20px; }
+        /* 전체를 감싸는 컨테이너 */
+        .main-container { 
+            display: flex; flex-direction: column; align-items: center; 
+            padding: 40px 20px; width: 100%; max-width: 700px; margin: 0 auto;
+        }
 
-        /* --- 1. 상단 고민 섹션 (블랙 테마) --- */
-        .q-container { width: 100%; max-width: 500px; text-align: center; margin-bottom: 80px; }
-        .q-title { color: var(--navy); margin-bottom: 30px; font-weight: 700; }
+        /* 공통 섹션 스타일 */
+        .section { width: 100%; margin-bottom: 60px; text-align: center; }
+
+        /* [섹션 1] 학원 선택 고민 (블랙 테마) */
         .q-box { 
-            background: #222; color: #fff; padding: 20px; margin: 15px 0;
-            border-radius: 12px; font-weight: 500;
-            animation: blink-fade 2s infinite ease-in-out;
+            background: #222; color: #fff; padding: 20px; margin: 15px auto;
+            border-radius: 12px; width: 90%; animation: blink-fade 2s infinite ease-in-out;
         }
         @keyframes blink-fade { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         .q1 { animation-delay: 0s; } .q2 { animation-delay: 0.7s; } .q3 { animation-delay: 1.4s; }
-        .reason-box { background: #1a1a1a; color: white; padding: 20px; border-radius: 8px; margin: 20px 0; font-weight: bold; }
-        .final-message { font-size: 1.2rem; font-weight: 900; color: #d4af37; margin-top: 20px; }
+        .reason-box { background: #1a1a1a; color: white; padding: 20px; border-radius: 8px; margin: 20px auto; width: 90%; font-weight: bold; }
+        .final-message { font-size: 1.2rem; font-weight: 900; color: #b8860b; margin-top: 10px; }
 
-        /* --- 2. 하단 로드맵 섹션 (골드 테두리 테마) --- */
-        h1 { font-weight: 700; color: var(--navy); margin-bottom: 40px; }
-        .speech-bubble {
-            background: white; color: var(--navy); padding: 30px; border-radius: 20px;
-            max-width: 600px; width: 90%; margin: 15px auto;
-            border: 3px solid transparent;
+        /* [섹션 2] 로드맵 (골드 테두리 테마) */
+        .bubble {
+            background: white; color: #16213E; padding: 25px; border-radius: 20px;
+            width: 90%; margin: 15px auto; border: 3px solid transparent;
             background-image: linear-gradient(white, white), linear-gradient(to right, #C9A84C, #F4E4A1, #C9A84C);
             background-origin: border-box; background-clip: padding-box, border-box;
-            opacity: 0; animation: showAndStay 8s infinite;
+            animation: showAndStay 8s infinite; opacity: 0;
         }
         @keyframes showAndStay {
-            0% { opacity: 0; transform: scale(0); }
+            0% { opacity: 0; transform: scale(0.9); }
             10% { opacity: 1; transform: scale(1); }
             90% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0); }
+            100% { opacity: 0; transform: scale(0.9); }
         }
-        .bubble1 { animation-delay: 0s; } .bubble2 { animation-delay: 2s; } .bubble3 { animation-delay: 4s; }
-        h3 { color: var(--gold); margin-top: 0; }
+        .b1 { animation-delay: 0s; } .b2 { animation-delay: 2s; } .b3 { animation-delay: 4s; }
+        
+        h2 { color: #16213E; font-weight: 700; margin-bottom: 20px; }
+        h3 { color: #C9A84C; margin-top: 0; }
+        p { font-weight: 400; line-height: 1.6; margin-bottom: 0; }
     </style>
 </head>
 <body>
     <div class="background"></div>
-    <div class="container">
+    <div class="main-container">
         
-        <!-- 섹션 1: 학원 선택 고민 -->
-        <div class="q-container">
-            <h2 class="q-title">믿고 다닐만한 학원은 찾으셨나요?</h2>
+        <!-- 섹션 1: 블랙 테마 고민 -->
+        <div class="section">
+            <h2 style="color:#222;">믿고 다닐만한 학원은 찾으셨나요?</h2>
             <div class="q-box q1">"믿을만한 애견미용 전문학원일까...?"</div>
             <div class="q-box q2">"확실히 취업/창업을 할 수 있을까...?"</div>
             <div class="q-box q3">"실력있는 강사진 일까...?"</div>
@@ -318,19 +319,21 @@
             <div class="final-message">"애견미용사"가 될 수 있을 거라는<br>확신이 없기 때문입니다.</div>
         </div>
 
-        <!-- 섹션 2: 이바우펫 로드맵 -->
-        <h1>애견미용 기술, 이제 확실하게 시작하세요!</h1>
-        <div class="speech-bubble bubble1">
-            <h3>1. 미용 도구조차 낯선 '입문자'라면?</h3>
-            <p>"SNS에서 보는 화려한 미용 영상, 나도 할 수 있을까?" 막막하기만 한 초보 미용사 지망생이라면 이바우펫에서 시작하세요!</p>
-        </div>
-        <div class="speech-bubble bubble2">
-            <h3>2. 1인 샵 창업을 꿈꾸는 '예비 원장님'이라면?</h3>
-            <p>예약부터 홍보까지 혼자 다 해야 하는 막막함! 실전 현장 노하우로 당신의 성공을 돕습니다.</p>
-        </div>
-        <div class="speech-bubble bubble3">
-            <h3>3. 매출 고민으로 밤잠 설치는 '초보 미용사'라면?</h3>
-            <p>광고비만 낭비하는 마케팅은 그만. 이바우펫만의 '매출 로드맵'으로 신규 손님을 확보하세요!</p>
+        <!-- 섹션 2: 골드 테두리 로드맵 -->
+        <div class="section">
+            <h2 style="color:#16213E;">이바우펫 창업 성공 로드맵</h2>
+            <div class="bubble b1">
+                <h3>1. 미용 도구조차 낯선 '입문자'라면?</h3>
+                <p>막막하기만 한 초보 미용사 지망생이라면 이바우펫에서 확실하게 시작하세요!</p>
+            </div>
+            <div class="bubble b2">
+                <h3>2. 1인 샵 창업을 꿈꾸는 '예비 원장님'이라면?</h3>
+                <p>예약부터 홍보까지 실전 현장 노하우로 당신의 성공을 돕습니다.</p>
+            </div>
+            <div class="bubble b3">
+                <h3>3. 매출 고민하는 '초보 미용사'라면?</h3>
+                <p>이바우펫만의 '매출 로드맵'으로 신규 손님을 확보하세요!</p>
+            </div>
         </div>
     </div>
 </body>
