@@ -245,6 +245,119 @@
         </section>
     </div>
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애견미용학원 선택 고민</title>
+    <style>
+        /* Pretendard 폰트 로드 (가독성을 위해 추가) */
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Pretendard', sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            word-break: keep-all; /* 한글 줄바꿈 자연스럽게 */
+        }
+
+        /* 깜빡이는 애니메이션 정의 */
+        @keyframes blink-fade {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; } /* 반투명해졌다가 다시 돌아옴 */
+        }
+
+        .question-box {
+            background-color: #333;
+            color: #ccc;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            
+            /* 애니메이션 적용: 3초 주기로 무한 반복 */
+            animation: blink-fade 2s infinite ease-in-out;
+        }
+
+        /* 각 박스마다 애니메이션 시작 시간차를 두어 자연스럽게 만듦 */
+        .question-box:nth-child(2) { animation-delay: 0s; }
+        .question-box:nth-child(3) { animation-delay: 2.5s; }
+        .question-box:nth-child(4) { animation-delay: 3.5s; }
+
+        .dots {
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        .reason-box {
+            background-color: #330000;
+            border: 1px solid #770000;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            word-break: keep-all;
+        }
+
+        .final-message {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffcc00;
+            margin-top: 20px;
+            line-height: 1.3;
+            word-break: keep-all;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>까다로운 강아지 미용, 1년 걸린다는데<br>믿고 다닐만한 학원은 찾으셨나요?</h1>
+
+    <!-- 각 박스에 애니메이션이 적용됨 -->
+    <div class="question-box">"믿을만한 애견미용 전문학원일까...?"</div>
+    <div class="question-box">"확실히 취업/창업을 할 수 있을까...?"</div>
+    <div class="question-box">"실력있는 강사진 일까...?"</div>
+
+    <div class="dots">. . .</div>
+
+    <div class="reason-box">학원을 다녀도 불안한 이유는 간단합니다.</div>
+
+    <div class="final-message">"애견미용사"가 될 수 있을 거라는<br>확신이 없기 때문입니다.</div>
+</div>
+
+</body>
+</html>
+    
+
+    
     <!-- 3. 과목 카드 효과 섹션 -->
     <section id="courses">
         <h2 class="section-title">이바우펫 교육 프로그램</h2>
