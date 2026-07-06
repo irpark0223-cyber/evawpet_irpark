@@ -443,6 +443,124 @@
         <!-- 가로 슬라이더 끝 -->
     </section>
 
+    <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이바우펫 창업 성공 로드맵</title>
+    <!-- 구글 폰트 적용 -->
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #16213E;
+            --gold: #C9A84C;
+            --bg-main: #F8F9FC;
+            --bg-sub: #EEF1F8;
+        }
+
+        body, html { 
+            margin: 0; padding: 0; height: 100%; 
+            font-family: 'Noto Sans KR', sans-serif; 
+            background-color: var(--bg-main);
+        }
+        
+        /* 배경 설정: 사진은 옅게 처리하여 화이트 톤 강조 */
+        .background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://github.com/irpark0223-cyber/evawpet_irpark/blob/main/KakaoTalk_20250114_154953464_06.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(1.1) opacity(0.15); /* 배경을 밝고 연하게 */
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* 헤드라인 폰트 적용 */
+        h1 { 
+            font-family: 'Do Hyeon', sans-serif;
+            margin-bottom: 40px; 
+            color: var(--navy); 
+            text-align: center;
+        }
+
+        /* 말풍선 공통 스타일 */
+        .speech-bubble {
+            background: white;
+            color: var(--navy);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            margin: 15px auto;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(22, 33, 62, 0.1);
+            
+            /* 골드 그라데이션 테두리 */
+            border: 3px solid transparent;
+            background-image: linear-gradient(white, white), linear-gradient(to right, #C9A84C, #F4E4A1, #C9A84C);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            
+            opacity: 0;
+            transform: scale(0);
+            animation: bubbleAppear 2s forwards;
+        }
+
+        @keyframes bubbleAppear {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .bubble1 { animation-delay: 0s; }
+        .bubble2 { animation-delay: 2s; }
+        .bubble3 { animation-delay: 4s; }
+
+        /* 헤드라인 폰트 적용 */
+        h3 { 
+            font-family: 'Do Hyeon', sans-serif;
+            color: var(--gold); 
+            margin-top: 0; 
+            font-size: 1.3rem;
+        }
+
+        p { font-size: 1rem; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<div class="background"></div>
+
+<div class="container">
+    <h1>애견미용 기술, 배울까 말까 고민되시나요?</h1>
+
+    <div class="speech-bubble bubble1">
+        <h3>1. 미용 도구조차 낯선 '입문자'라면?</h3>
+        <p>"SNS에서 보는 화려한 미용 영상, 나도 할 수 있을까?"<br>막막하기만 한 초보 미용사 지망생이라면 이바우펫에서 시작하세요!</p>
+    </div>
+
+    <div class="speech-bubble bubble2">
+        <h3>2. 1인 샵 창업을 꿈꾸는 '예비 원장님'이라면?</h3>
+        <p>예약부터 홍보까지 혼자 다 해야 하는 막막함!<br>실전 현장 노하우로 당신의 성공을 돕습니다.</p>
+    </div>
+
+    <div class="speech-bubble bubble3">
+        <h3>3. 매출 고민으로 밤잠 설치는 '초보 미용사'라면?</h3>
+        <p>광고비만 낭비하는 마케팅은 그만.<br>이바우펫만의 '매출 로드맵'으로 신규 손님을 확보하세요!</p>
+    </div>
+</div>
+
+</body>
+
+    
     <!-- 7. 마감 임박 긴급성 섹션 -->
     <section>
         <div class="deadline">
