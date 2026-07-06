@@ -448,7 +448,6 @@
 <head>
     <meta charset="UTF-8">
     <title>이바우펫 창업 성공 로드맵</title>
-    <!-- Noto Sans KR 폰트 적용 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -457,13 +456,13 @@
         :root {
             --navy: #16213E;
             --gold: #C9A84C;
-            --bg-main: #F8F9FC; /* 밝은 블루-화이트 배경 */
+            --bg-main: #F8F9FC;
         }
 
         body { 
             margin: 0; padding: 0; 
             font-family: 'Noto Sans KR', sans-serif; 
-            background-color: var(--bg-main); /* 배경색 설정 */
+            background-color: var(--bg-main);
         }
         
         .background {
@@ -471,7 +470,7 @@
             background-image: url('https://github.com/irpark0223-cyber/evawpet_irpark/blob/main/KakaoTalk_20250114_154953464_06.jpg?raw=true');
             background-size: cover;
             background-position: center;
-            filter: brightness(1.1) opacity(0.1); /* 배경 사진 옅게 처리 */
+            filter: brightness(1.1) opacity(0.1);
             z-index: -1;
         }
 
@@ -495,14 +494,14 @@
             background-image: linear-gradient(white, white), linear-gradient(to right, #C9A84C, #F4E4A1, #C9A84C);
             background-origin: border-box; background-clip: padding-box, border-box;
             
-            /* 애니메이션 자동 설정 */
+            /* 반복 애니메이션 설정 (forwards 제거) */
             opacity: 0;
             transform: scale(0);
-            animation: bubbleAppear 2s forwards;
+            animation: bubbleLoop 6s infinite;
             position: relative;
         }
 
-        /* 2.5초 간격 깜빡임 커서 효과 */
+        /* 2.5초 간격 깜빡임 커서 */
         .speech-bubble::after {
             content: '|';
             color: var(--gold);
@@ -516,12 +515,15 @@
             50% { opacity: 0; }
         }
 
-        @keyframes bubbleAppear {
+        /* 반복 애니메이션 정의 */
+        @keyframes bubbleLoop {
             0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            10% { transform: scale(1); opacity: 1; }
+            80% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
         }
 
-        /* 순차적 자동 등장 딜레이 */
+        /* 순차적 등장 딜레이 */
         .bubble1 { animation-delay: 0s; }
         .bubble2 { animation-delay: 2s; }
         .bubble3 { animation-delay: 4s; }
@@ -541,19 +543,16 @@
     <div class="container">
         <h1>애견미용 기술, 배울까 말까 고민되시나요?</h1>
         
-        <!-- 말풍선 1 -->
         <div class="speech-bubble bubble1">
             <h3>1. 미용 도구조차 낯선 '입문자'라면?</h3>
             <p>"SNS에서 보는 화려한 미용 영상, 나도 할 수 있을까?" 막막하기만 한 초보 미용사 지망생이라면 이바우펫에서 시작하세요!</p>
         </div>
         
-        <!-- 말풍선 2 -->
         <div class="speech-bubble bubble2">
             <h3>2. 1인 샵 창업을 꿈꾸는 '예비 원장님'이라면?</h3>
             <p>예약부터 홍보까지 혼자 다 해야 하는 막막함! 실전 현장 노하우로 당신의 성공을 돕습니다.</p>
         </div>
         
-        <!-- 말풍선 3 -->
         <div class="speech-bubble bubble3">
             <h3>3. 매출 고민으로 밤잠 설치는 '초보 미용사'라면?</h3>
             <p>광고비만 낭비하는 마케팅은 그만. 이바우펫만의 '매출 로드맵'으로 신규 손님을 확보하세요!</p>
